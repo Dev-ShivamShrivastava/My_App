@@ -6,27 +6,22 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapp.R
+import com.example.myapp.databinding.ActivityLoginBinding
 import com.google.android.material.button.MaterialButton
 
 class LoginActivity : AppCompatActivity() {
 
-    var btnLogIn: MaterialButton? = null
-    var tvSkip: TextView? = null
+    val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        btnLogIn = findViewById(R.id.btnLogin)
-        tvSkip = findViewById(R.id.tvSkip)
-
+        setContentView(binding.root)
         Log.d("Method","onCreate")
-
-
-        btnLogIn?.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             startActivity(Intent(this,Signup::class.java))
             finish()
         }
 
-        tvSkip?.setOnClickListener {
+        binding.tvSkip.setOnClickListener {
             startActivity(Intent(this,HomeActivity::class.java))
             finish()
         }
