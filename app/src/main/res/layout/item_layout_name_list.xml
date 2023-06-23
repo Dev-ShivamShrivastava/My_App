@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
-    android:text="Dummy"
-    android:id="@+id/tvName"
-    android:textStyle="bold|italic"
+    android:id="@+id/clItem"
     android:background="@drawable/ic_edit_text_bg"
-    android:textSize="24dp"
-    android:textColor="@color/black"
     android:layout_margin="5dp">
 
-</TextView>
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/ivUserImage"
+        android:src="@drawable/ic_profile"
+        app:civ_border_color="#3f51b5"
+        app:civ_border_width="1dp"
+        app:civ_shadow_radius="10dp"
+        app:civ_shadow_color="#3f51b5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Name"
+        android:id="@+id/tvName"
+        android:textSize="24dp"
+        android:maxLines="1"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivSelect"
+        app:layout_constraintStart_toEndOf="@+id/ivUserImage"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/ivSelect"
+        android:src="@drawable/ic_uncheck"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

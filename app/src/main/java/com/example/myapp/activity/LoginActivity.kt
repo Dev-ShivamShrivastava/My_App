@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapp.R
 import com.example.myapp.databinding.ActivityLoginBinding
+import com.example.myapp.preferences.PreferenceHelper
 import com.google.android.material.button.MaterialButton
 
 class LoginActivity : AppCompatActivity() {
@@ -16,12 +17,24 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         Log.d("Method","onCreate")
-        binding.btnLogin.setOnClickListener {
+        Log.d("data",PreferenceHelper.getPref().getValue("data"))
+
+        if (PreferenceHelper.getPref().getBoolean("isLogin")){
+            startActivity(Intent(this,HomeActivity::class.java))
+            finish()
+        }
+        binding.tvSignUp.setOnClickListener {
             startActivity(Intent(this,Signup::class.java))
             finish()
         }
 
         binding.tvSkip.setOnClickListener {
+            startActivity(Intent(this,HomeActivity::class.java))
+            finish()
+        }
+
+        binding.btnLogin.setOnClickListener {
+            PreferenceHelper.getPref().storeValue("isLogin",true)
             startActivity(Intent(this,HomeActivity::class.java))
             finish()
         }

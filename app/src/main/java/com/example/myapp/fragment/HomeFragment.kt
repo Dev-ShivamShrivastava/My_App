@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapp.adapter.NameListAdapter
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentHomeBinding
+import com.example.myapp.model.UserListResponse
 import com.example.myapp.network.RetrofitHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,16 +22,21 @@ class HomeFragment : Fragment() {
 
     val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     val adapter by lazy { NameListAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-//        val view  = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
 
         binding.btnProfile.setOnClickListener{
             findNavController().navigate(R.id.profileFragment)
         }
+        adapter.setReferenceListener(object :NameListAdapter.OnSelectedListener{
+            override fun onSelected(data: UserListResponse.Data) {
+                Toast.makeText(requireContext(), data.first_name, Toast.LENGTH_SHORT).show()
+            }
+
+        })
         binding.rvNameList.adapter = adapter
 
         return binding.root
@@ -39,12 +45,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         CoroutineScope(Dispatchers.IO).launch {
-           val response =  RetrofitHelper.getRetrofitClient().doGetListResources()
-            Log.e("response", response.body().toString())
+           val response =  RetrofitHelper.getRetrofitClient().getUserList()
+            CoroutineScope(Dispatchers.Main).launch {
+                adapter.setData(response.body()?.data?: ArrayList())
+            }
+            Log.e("response-->", response.body().toString())
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
+//Glide or Picasso
+
 }
