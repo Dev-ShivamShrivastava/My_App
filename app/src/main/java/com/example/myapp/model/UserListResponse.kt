@@ -1,24 +1,24 @@
 package com.example.myapp.model
 
 data class UserListResponse(
-    var `data`: ArrayList<Data>,
-    var pages: Int?,
-    var per_page: Int?,
-    var support: Support?,
-    var total: Int?,
-    var total_pages: Int?
+    var `data`: ArrayList<Data>?= null,
+    var pages: Int?= null,
+    var per_page: Int?= null,
+    var support: Support?= null,
+    var total: Int?= null,
+    var total_pages: Int?= null
 ) {
     data class Data(
-        var avatar: String?,
-        var email: String?,
-        var first_name: String?,
-        var id: Int?,
-        var last_name: String?,
+        var avatar: String?= null,
+        var email: String?= null,
+        var first_name: String?= null,
+        var id: Int?= null,
+        var last_name: String?= null,
         var isSelected:Boolean=false
     )
 
     data class Support(
-        var text: String?,
-        var url: String?
+        var text: String?= null,
+        var url: String?= null
     )
 }

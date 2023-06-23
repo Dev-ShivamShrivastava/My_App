@@ -1,4 +1,4 @@
-package com.example.myapp.fragment
+package com.example.myapp.views.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,7 @@ import com.example.myapp.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
 
-     val binding by lazy {  FragmentSettingBinding.inflate(layoutInflater) }
+     val binding by lazy { FragmentSettingBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

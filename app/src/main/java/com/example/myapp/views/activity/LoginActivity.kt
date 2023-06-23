@@ -1,4 +1,4 @@
-package com.example.myapp.activity
+package com.example.myapp.views.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,22 +20,22 @@ class LoginActivity : AppCompatActivity() {
         Log.d("data",PreferenceHelper.getPref().getValue("data"))
 
         if (PreferenceHelper.getPref().getBoolean("isLogin")){
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
         binding.tvSignUp.setOnClickListener {
-            startActivity(Intent(this,Signup::class.java))
+            startActivity(Intent(this, Signup::class.java))
             finish()
         }
 
         binding.tvSkip.setOnClickListener {
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
 
         binding.btnLogin.setOnClickListener {
             PreferenceHelper.getPref().storeValue("isLogin",true)
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
     }

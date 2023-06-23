@@ -1,4 +1,4 @@
-package com.example.myapp.activity
+package com.example.myapp.views.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,16 +7,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.myapp.R
 import com.example.myapp.databinding.ActivityHomeBinding
+import com.example.myapp.preferences.PreferenceHelper
 
 class HomeActivity : AppCompatActivity() {
     lateinit var navController: NavController
-    lateinit var binding:ActivityHomeBinding
+    val binding: ActivityHomeBinding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         navController = findNavController(R.id.fragmentMain)
         NavigationUI.setupWithNavController(binding.bottomNav, navController)
+        PreferenceHelper.getPref().storeValue("isLogin",false)
 
     }
 }
