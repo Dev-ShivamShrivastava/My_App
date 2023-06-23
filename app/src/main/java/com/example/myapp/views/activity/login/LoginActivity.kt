@@ -1,18 +1,22 @@
-package com.example.myapp.activity
+package com.example.myapp.views.activity.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapp.R
 import com.example.myapp.databinding.ActivityLoginBinding
 import com.example.myapp.preferences.PreferenceHelper
-import com.google.android.material.button.MaterialButton
+import com.example.myapp.views.activity.HomeActivity
+import com.example.myapp.views.activity.Signup
 
 class LoginActivity : AppCompatActivity() {
 
-    val binding by lazy { ActivityLoginBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivityLoginBinding.inflate(layoutInflater).apply {
+        model = viewModel
+    } }
+    val viewModel : LoginVM by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -20,24 +24,19 @@ class LoginActivity : AppCompatActivity() {
         Log.d("data",PreferenceHelper.getPref().getValue("data"))
 
         if (PreferenceHelper.getPref().getBoolean("isLogin")){
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
         binding.tvSignUp.setOnClickListener {
-            startActivity(Intent(this,Signup::class.java))
+            startActivity(Intent(this, Signup::class.java))
             finish()
         }
 
         binding.tvSkip.setOnClickListener {
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
 
-        binding.btnLogin.setOnClickListener {
-            PreferenceHelper.getPref().storeValue("isLogin",true)
-            startActivity(Intent(this,HomeActivity::class.java))
-            finish()
-        }
     }
 
     override fun onStart() {

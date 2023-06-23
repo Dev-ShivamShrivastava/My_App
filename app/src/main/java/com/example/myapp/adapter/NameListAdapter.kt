@@ -1,6 +1,7 @@
 package com.example.myapp.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapp.R
@@ -33,7 +34,7 @@ class NameListAdapter:RecyclerView.Adapter<NameListAdapter.NameListHolder>() {
 
         holder.binding.root.setOnClickListener {
             selectSingleItem(position)
-            listener?.onSelected(list[position])
+            listener?.onSelected(it,list[position])
         }
 
     }
@@ -59,6 +60,6 @@ class NameListAdapter:RecyclerView.Adapter<NameListAdapter.NameListHolder>() {
 
 
     interface OnSelectedListener{
-        fun onSelected(data:UserListResponse.Data)
+        fun onSelected(view: View, data:UserListResponse.Data)
     }
 }
