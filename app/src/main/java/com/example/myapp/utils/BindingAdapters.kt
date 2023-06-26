@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso
 /** Binding Adapters */
 object BindingAdapters {
 
+
     @BindingAdapter(value = ["setRecyclerAdapter"], requireAll = false)
     @JvmStatic
     fun setRecyclerAdapter(
