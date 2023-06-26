@@ -10,7 +10,9 @@ import com.example.myapp.databinding.ActivityLoginBinding
 import com.example.myapp.preferences.PreferenceHelper
 import com.example.myapp.views.activity.HomeActivity
 import com.example.myapp.views.activity.Signup
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityLoginBinding.inflate(layoutInflater).apply {

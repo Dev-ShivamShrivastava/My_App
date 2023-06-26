@@ -5,8 +5,11 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myapp.R
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ProfileVM:ViewModel() {
+@HiltViewModel
+class ProfileVM @Inject constructor():ViewModel() {
 
     val count by lazy { MutableLiveData(0) }
 

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myapp.databinding.ActivitySignupBinding
 import com.example.myapp.views.activity.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Signup : AppCompatActivity() {
     val binding: ActivitySignupBinding by lazy { ActivitySignupBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {

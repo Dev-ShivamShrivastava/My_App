@@ -9,8 +9,11 @@ import com.example.myapp.R
 import com.example.myapp.model.UserDetails
 import com.example.myapp.preferences.PreferenceHelper
 import com.example.myapp.views.activity.HomeActivity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginVM:ViewModel() {
+@HiltViewModel
+class LoginVM @Inject constructor():ViewModel() {
 
     var userDetails = ObservableField(UserDetails())
 

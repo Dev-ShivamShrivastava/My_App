@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapp.R
 import com.example.myapp.databinding.ItemLayoutNameListBinding
 import com.example.myapp.model.UserListResponse
-import com.squareup.picasso.Picasso
 
 class NameListAdapter:RecyclerView.Adapter<NameListAdapter.NameListHolder>() {
 
@@ -24,13 +22,8 @@ class NameListAdapter:RecyclerView.Adapter<NameListAdapter.NameListHolder>() {
     }
 
     override fun onBindViewHolder(holder: NameListHolder, position: Int) {
-        holder.binding.tvName.text = "${list[position].first_name} ${list[position].last_name}"
-        Picasso.get().load(list[position].avatar).into(holder.binding.ivUserImage)
-        if (list[position].isSelected){
-            holder.binding.ivSelect.setImageResource(R.drawable.ic_check)
-        }else{
-            holder.binding.ivSelect.setImageResource(R.drawable.ic_uncheck)
-        }
+
+        holder.bind(list[position])
 
         holder.binding.root.setOnClickListener {
             selectSingleItem(position)
@@ -52,7 +45,11 @@ class NameListAdapter:RecyclerView.Adapter<NameListAdapter.NameListHolder>() {
         notifyDataSetChanged()
     }
 
-    class NameListHolder(val binding:ItemLayoutNameListBinding):RecyclerView.ViewHolder(binding.root){}
+    class NameListHolder( val binding:ItemLayoutNameListBinding):RecyclerView.ViewHolder(binding.root){
+        fun bind(data:UserListResponse.Data){
+            binding.model = data
+        }
+    }
 
     fun setReferenceListener(refernce:OnSelectedListener){
         listener = refernce

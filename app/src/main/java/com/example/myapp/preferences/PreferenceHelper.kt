@@ -19,7 +19,7 @@ class PreferenceHelper {
                 MODE_PRIVATE
             )
     }
-   private var myEdit = sharedPreferences!!.edit()
+   private var myEdit :SharedPreferences.Editor= sharedPreferences!!.edit()
 
     fun storeValue(key:String,value:String){
         myEdit.putString(key,value).commit()

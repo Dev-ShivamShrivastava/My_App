@@ -6,21 +6,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class Repository {
+class Repository @Inject constructor(private val retrofitApi: RetrofitApi) {
 
-     fun fetchData(returnData:(UserListResponse)->Unit) {
+    fun fetchData(returnData: (UserListResponse) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitHelper.getRetrofitClient().getUserList()
-                if (response.isSuccessful) {
-                    returnData(response.body() ?: UserListResponse())
-                } else {
-                    returnData(UserListResponse())
-                }
+                val response = retrofitApi.getUserList()
+                returnData(response.body() ?: UserListResponse())
                 Log.e("response-->", response.body().toString())
-
-            }catch(e:Exception){
+            } catch (e: Exception) {
                 returnData(UserListResponse())
                 e.printStackTrace()
             }

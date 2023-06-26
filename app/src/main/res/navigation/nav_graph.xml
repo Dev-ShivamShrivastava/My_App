@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/setting"
-        android:name="com.example.myapp.views.fragment.SettingFragment"
+        android:name="com.example.myapp.views.fragment.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
 </navigation>
