@@ -5,14 +5,25 @@ import com.example.myapp.model.UserListResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class Repository {
 
      fun fetchData(returnData:(UserListResponse)->Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-            val response =  RetrofitHelper.getRetrofitClient().getUserList()
-            Log.e("response-->", response.body().toString())
-            returnData(response.body()?: UserListResponse())
+            try {
+                val response = RetrofitHelper.getRetrofitClient().getUserList()
+                if (response.isSuccessful) {
+                    returnData(response.body() ?: UserListResponse())
+                } else {
+                    returnData(UserListResponse())
+                }
+                Log.e("response-->", response.body().toString())
+
+            }catch(e:Exception){
+                returnData(UserListResponse())
+                e.printStackTrace()
+            }
         }
     }
 }

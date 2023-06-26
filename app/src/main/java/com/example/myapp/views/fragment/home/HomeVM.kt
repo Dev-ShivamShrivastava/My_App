@@ -1,20 +1,15 @@
 package com.example.myapp.views.fragment.home
 
-import android.app.Activity
 import android.view.View
 import android.widget.Toast
-import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.myapp.R
 import com.example.myapp.adapter.NameListAdapter
 import com.example.myapp.model.UserListResponse
 import com.example.myapp.network.Repository
-import com.example.myapp.views.activity.HomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,10 +41,14 @@ class HomeVM:ViewModel(){
     }
 
     fun callApi(){
-            repository.fetchData(){
+            repository.fetchData{
                 CoroutineScope(Dispatchers.Main).launch {
 //                responseLive.value = it
-                    adapter.setData(it.data ?: ArrayList())
+                    if (it.data!=null){
+                        adapter.setData(it.data ?: ArrayList())
+                    }else{
+                        Toast.makeText(context.get(),"network problem",Toast.LENGTH_LONG).show()
+                    }
 
                 }
         }

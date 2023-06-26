@@ -17,7 +17,5 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         navController = findNavController(R.id.fragmentMain)
         NavigationUI.setupWithNavController(binding.bottomNav, navController)
-        PreferenceHelper.getPref().storeValue("isLogin",false)
-
     }
 }
