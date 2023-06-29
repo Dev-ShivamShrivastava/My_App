@@ -31,39 +31,11 @@ object BindingAdapters {
         imageView: ImageView,
         url: String?
     ) {
-        Log.d("ImageUrlIs", "+=======$url")
         try {
-            when {
-                url?.startsWith("/storage")!! -> Picasso.get().load(url).into(imageView)
-                else -> Picasso.get().load(url).into(imageView)
-//            else ->  Glide.with(imageView.context).load(url).into(imageView)
-            }
+            Picasso.get().load(url).placeholder(R.drawable.ic_profile).into(imageView)
         }catch (e:Exception){}
 
     }
-
-    @BindingAdapter(value = ["setProfileImageUrl"], requireAll = false)
-    @JvmStatic
-    fun setProfileImageUrl(
-        imageView: ImageView,
-        url: String?
-    ) {
-        try {
-            Log.d("ImageUrlIs", "+=======$url")
-            when {
-                url?.startsWith("/storage")!! -> Picasso.get().load(url).placeholder(R.drawable.ic_profile).into(imageView)
-                else -> Picasso.get().load(url).placeholder(R.drawable.ic_profile).into(imageView)
-//            else ->  Glide.with(imageView.context).load(url).into(imageView)
-            }
-        }catch (e:Exception){}
-    }
-
-    @BindingAdapter(value = ["setEditTable"],requireAll = false)
-    @JvmStatic
-    fun setEditTable(editText: EditText,value:ObservableField<Boolean>){
-        editText.isEnabled = value.get()?:false
-    }
-
     @BindingAdapter(value = ["setDrawable"], requireAll = false)
     @JvmStatic
     fun setDrawable(

@@ -13,7 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginVM @Inject constructor():ViewModel() {
+class LoginVM @Inject constructor(private val preferenceHelper: PreferenceHelper):ViewModel() {
 
     var userDetails = ObservableField(UserDetails())
 
@@ -22,7 +22,7 @@ class LoginVM @Inject constructor():ViewModel() {
             R.id.btnLogin ->{
                 Log.d("userDetails","${userDetails.get()?.email}")
                 Log.d("userDetails","${userDetails.get()?.password}")
-                PreferenceHelper.getPref().storeValue("isLogin",true)
+                preferenceHelper.storeValue("isLogin",true)
                 (view.context as LoginActivity).startActivity(Intent((view.context as LoginActivity), HomeActivity::class.java))
                 (view.context as LoginActivity).finish()
             }

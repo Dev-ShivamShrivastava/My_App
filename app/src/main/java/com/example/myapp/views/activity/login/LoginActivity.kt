@@ -11,6 +11,7 @@ import com.example.myapp.preferences.PreferenceHelper
 import com.example.myapp.views.activity.HomeActivity
 import com.example.myapp.views.activity.Signup
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -20,13 +21,16 @@ class LoginActivity : AppCompatActivity() {
     } }
     val viewModel : LoginVM by viewModels()
 
+    @Inject
+    lateinit var preferenceHelper: PreferenceHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         Log.d("Method","onCreate")
-        Log.d("data",PreferenceHelper.getPref().getValue("data"))
+        Log.d("data",preferenceHelper.getValue("data"))
 
-        if (PreferenceHelper.getPref().getBoolean("isLogin")){
+        if (preferenceHelper.getBoolean("isLogin")){
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
