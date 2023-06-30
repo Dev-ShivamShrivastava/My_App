@@ -11,6 +11,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.myapp.R
 import com.example.myapp.views.activity.HomeActivity
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -21,7 +22,6 @@ class FirebaseMessagingService : FirebaseMessagingService() {
 
     val TAG = "FirebaseMessagingService"
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("LongLogTag")
     override fun onMessageReceived(p0: RemoteMessage) {
@@ -29,6 +29,14 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         Log.d(TAG, "remoteMessage : ${p0.notification?.title}")
         Log.d(TAG, "remoteMessage : ${p0.notification?.body}")
         Log.d(TAG, "remoteMessage Message data payload: ${p0.data}")
+
+
+
+        val localBroadcastManager = LocalBroadcastManager.getInstance(this)
+        val localIntent:Intent = Intent("SHIVAM").putExtra("title",p0.notification?.title).putExtra("desc",p0.notification?.body)
+        localBroadcastManager.sendBroadcast(localIntent)
+
+
 
         showNotification(
             p0.notification?.title,

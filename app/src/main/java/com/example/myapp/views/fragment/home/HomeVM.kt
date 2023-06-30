@@ -5,6 +5,8 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.example.myapp.R
 import com.example.myapp.adapter.NameListAdapter
 import com.example.myapp.model.UserListResponse
 import com.example.myapp.network.Repository
@@ -18,19 +20,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeVM @Inject constructor(private val repository: Repository):ViewModel(){
-
     val adapter by lazy { NameListAdapter() }
-
    lateinit var context : WeakReference<FragmentActivity>
-
     init {
         adapter.setReferenceListener(object : NameListAdapter.OnSelectedListener {
             override fun onSelected(view: View, data: UserListResponse.Data) {
                 view.context.showToast(data.first_name?:"")
-//                view.findNavController().navigate(R.id.profileFragment)
+                view.findNavController().navigate(R.id.profileFragment)
 //                Navigation.findNavController((view.context as HomeActivity), R.id.fragmentMain).navigate(R.id.profileFragment)
             }
-
         })
     }
 
