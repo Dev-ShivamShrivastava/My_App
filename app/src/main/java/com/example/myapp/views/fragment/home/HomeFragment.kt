@@ -31,35 +31,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        binding.btnProfile.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
-        }
-
-//        binding.rvNameList.adapter = adapter
-
-
-
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//        CoroutineScope(Dispatchers.IO).launch {
-//           val response =  RetrofitHelper.getRetrofitClient().getUserList()
-//            CoroutineScope(Dispatchers.Main).launch {
-//                adapter.setData(response.body()?.data?: ArrayList())
-//            }
-//            Log.e("response-->", response.body().toString())
-//        }
 
-//        homeVM.responseLive.observe(viewLifecycleOwner) {
-//            if (it.data != null) {
-//            }
-//        }
-
-    }
-
-//Glide or Picasso
 
 }

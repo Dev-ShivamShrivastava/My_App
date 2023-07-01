@@ -10,7 +10,7 @@ data class NotesDataModel(
     @NonNull
     var id: Int = 0,
     var title: String? = null, var description: String? = null,
-    var list: ArrayList<Dummy> ? = null,var dummy: Dummy?=null
+    var list: ArrayList<Dummy> ? = null,var dummy: Dummy?=null,var isSelected:Boolean=false
 )
 
 
